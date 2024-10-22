@@ -236,3 +236,27 @@ Para configurar o servidor OpenVPN, utilizamos um contêiner Docker com uma imag
 
 ```bash
 docker run -v /etc/openvpn:/etc/openvpn --rm --cap-add=NET_ADMIN -d --name openvpn-server your_openvpn_image
+
+## Criar usuarios e criar uma chave de acesso para estes
+
+```bash
+easyrsa build-client-full [nome_do_cliente] nopass
+
+ovpn_getclient [nome_do_cliente] > /etc/openvpn/[nome_do_cliente].ovpn
+
+
+### Transferir os arquivos por meio de um aplicativo como BitViseSSH
+
+###Etapa 3: Configurar a Conexão do Cliente
+###Instalar o OpenVPN na Máquina Cliente
+
+```bash
+sudo apt-get install openvpn
+
+## Conectar-se à VPN Usando o Arquivo de Configuração Navegue até o diretório onde o arquivo .ovpn foi transferido e execute o seguinte comando:
+
+```bash
+sudo openvpn --config [nome_do_cliente].ovpn
+
+
+
